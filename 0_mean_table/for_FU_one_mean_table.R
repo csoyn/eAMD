@@ -1,0 +1,12 @@
+rm(list = ls())
+getwd()
+path <-"E:/Users/DPSJ001/Documents/CSY/R_eAMD_0726/0726/final_codes"
+setwd(path)
+source("./0_connection.R")
+source("./1_ProcessingFunctions.R")
+source("./2_oneYearCohort.R")
+source("./3_makeMeanTable_one.R")
+dt <- read.table("./FUOneMean.txt", sep=',')
+View(dt2)
+checkT <- read.table("./checkTable_one.csv", sep=',')
+View(checkT)

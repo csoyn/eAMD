@@ -1,0 +1,10 @@
+rm(list = ls())
+getwd()
+path <-"E:/Users/DPSJ001/Documents/CSY/R_eAMD_0726/0726/final_codes"
+setwd(path)
+source("./0_connection.R")
+source("./1_ProcessingFunctions.R")
+source("./2_allYearCohort.R")
+source("./3_makeMeanTable_all.R")
+dt <- read.table("./FUAllMean.txt", sep=',')
+View(dt)
