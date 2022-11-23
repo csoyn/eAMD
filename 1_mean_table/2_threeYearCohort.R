@@ -1,4 +1,4 @@
-
+# TODO : data table 명
 threeYear <- querySql(conn, "select * from g65829.eAMD_TX_3year_csy")
 id_all <- read.csv("./id_all.csv")
 id_A <- read.csv("./id_A.csv")

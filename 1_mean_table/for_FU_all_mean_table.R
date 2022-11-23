@@ -1,6 +1,9 @@
+# TODO : 0_connection.R, 2_allYearCohort.R 에서 변수 변경하기
+
 rm(list = ls())
 getwd()
-path <-"E:/Users/DPSJ001/Documents/CSY/R_eAMD_0726/0726/final_codes"
+# TODO : 현재 폴더 위치 입력 
+path <-""
 setwd(path)
 source("./0_connection.R")
 source("./1_ProcessingFunctions.R")

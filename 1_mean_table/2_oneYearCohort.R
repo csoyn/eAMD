@@ -1,4 +1,5 @@
 
+# TODO : data table 명
 oneYear<- querySql(conn, "select * from g65829.eAMD_TX_1year_csy")
 check_table <- matrix(ncol=2, byrow = T)
 check_table <- data.frame(check_table)
@@ -14,7 +15,7 @@ oneYear <- extractFirstDate(oneYear)
 oneYear <- oneYear %>%
   mutate(IS_ONEYEAR = ifelse(DAY_DIFF<366, TRUE, FALSE)) %>%
   filter(IS_ONEYEAR)
-oneYear = subset(oneYear, select = -c(DRUG_EXPOSURE_END_DATE, FIRST_EXPOSURE_DATE, PERSONAL_DRUG_ASD_NUMBER, IS_ONEYEAR))
+oneYear = subset(oneYear, select = -c(DRUG_EXPOSURE_END_DATE, FIRST_EXPOSURE_DATE, IS_ONEYEAR))
 
 ## 1. 기간 personid 나누기
 # (1) 08년도 ~ 19년도 전체 기간 person_id 

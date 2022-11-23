@@ -3,10 +3,9 @@ Sys.setlocale(category = "LC_ALL", locale = "us")
 library(SqlRender)
 library(DatabaseConnector)
 library(dplyr)
-library(sunburstR)
 options(scipen=100)
 
-
+# TODO : DB정보 입력
 user <- "G65829"
 pw <- "g65829"
 server <- "localhost/snuhos"
@@ -23,7 +22,7 @@ connectionDetails <- createConnectionDetails(dbms=dbms,
 
 conn <- connect(connectionDetails)
 
-
+# TODO : drug_concept_id 입력
 drug_beva <- c('1397141')
 drug_rani <- c('43286611')
 drug_afli <- c('35606176')

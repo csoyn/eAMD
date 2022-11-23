@@ -1,3 +1,4 @@
+# TODO : data table 명
 # get data table
 obserAll <- querySql(conn, "select * from g65829.eAMD_TX_allyear_csy")
 # number of person, number of row table
