@@ -6,7 +6,7 @@ getwd()
 path <-""
 setwd(path)
 source("./0_connection.R")
-source("./1_ProcessingFunctions.R")
+source("./1_processingFunctions.R")
 source("./2_allYearCohort.R")
 source("./3_makeMeanTable_all.R")
 dt <- read.table("./FUAllMean.txt", sep=',')
