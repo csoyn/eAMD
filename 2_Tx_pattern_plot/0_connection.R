@@ -8,11 +8,11 @@ options(scipen=100)
 
 
 user <- "G65829"
-pw <- "g65829"
-server <- "localhost/snuhos"
-port <- "1521"
+pw <- ""
+server <- ""
+port <- ""
 dbms <-"oracle"
-pathToDriver <- "C:/Program Files/sqldeveloper/jdbc/lib"
+pathToDriver <- ""
 
 connectionDetails <- createConnectionDetails(dbms=dbms,
                                              server=server,
