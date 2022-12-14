@@ -1,10 +1,17 @@
 Sys.setlocale(category = "LC_ALL", locale = "us")
 
 library(SqlRender)
-# library(DatabaseConnector)
+library(DatabaseConnector)
 library(dplyr)
 library(sunburstR)
+library(gee)
+library(tidyr)
+library(ztable)
+library(moonBook)
+
+
 options(scipen=100)
+
 
 
 user <- "G65829"
