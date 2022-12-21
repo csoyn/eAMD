@@ -4,7 +4,7 @@ rightIds <-c("2000000436", "2000000438")
 leftIds <- c("2000000437", "2000000439")
 
 # TODO - table 위치
-sightData <- querySql(conn, "select * from g65829.eamd_va_indec_gp_csy2")
+sightData <- querySql(conn, "select * from g65829.eamd_va_index_gp_csy2")
 drugData <- querySql(conn, "select * from g65829.eamd_TX_both_csy")
 sightData <- sightData %>%
   select(-c(MEASUREMENT_SOURCE_VALUE, DIFF)) %>%
@@ -20,6 +20,7 @@ sightData <- sightData %>%
       ifelse(MEASUREMENT_CONCEPT_ID %in% leftIds, "Left", "Others"))) %>%
   select(-c(ROUTE_CONCEPT_ID, VALUE_SOURCE_VALUE, MEASUREMENT_DATE))
 
+# TODO : 파일 위치 확인 
 id_all = read.csv("../1_mean_table/id_all.csv")
 arr <- c("Right", "Left")
 
@@ -188,7 +189,7 @@ sink()
 
 extractOR(geeInd)
 options(ztable.type = "viewer")
-pdf("GEE.p")
+pdf("GEE.pdf")
 ztable(geeInd, digits = 4, caption = "Generalized Estimating Equation")
 graphics.off()
 dev.off()
