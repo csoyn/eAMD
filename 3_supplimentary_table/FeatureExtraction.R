@@ -1,5 +1,5 @@
 # TODO : FeatureExtration이 깔려있어야 함
-library(FeatureExtration)
+library(FeatureExtraction)
 library(SqlRender)
 library(DatabaseConnector)
 library(dplyr)
