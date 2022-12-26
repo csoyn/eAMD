@@ -140,6 +140,7 @@ dt_long <- dt_long %>% distinct()
 check <- checkData(dt_long) 
 check_table[6,] = c(check["person"], check["row"])
 
+write.csv(dt_long, "./dt_long.csv")
 write.csv(check_table, "./va_check.csv")
 
 dt_na <- na.omit(dt_long)
