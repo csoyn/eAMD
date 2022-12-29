@@ -56,7 +56,7 @@ sightData_Index <- sightData %>%
   mutate(MAX_VALUE = max(VALUE_AS_NUMBER)) %>%
   select(-c(VALUE_AS_NUMBER, MEASUREMENT_CONCEPT_ID)) %>% distinct()
 
-indexData <- inner_join(sightData, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
+indexData <- inner_join(sightData_Index, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
 
 check_table <- matrix(ncol=2, byrow = T)
 check_table <- data.frame(check_table)
@@ -75,7 +75,7 @@ sightData_after90 <- sightData %>%
   mutate(MAX_VALUE = max(VALUE_AS_NUMBER)) %>%
   select(-c(VALUE_AS_NUMBER, MEASUREMENT_CONCEPT_ID)) %>% distinct()
 
-after90Data <- inner_join(sightData, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
+after90Data <- inner_join(sightData_after90, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
 
 check <- checkData(after90Data) 
 check_table[3,] = c(check["person"], check["row"])
@@ -91,7 +91,7 @@ sightData_after365 <- sightData %>%
   mutate(MAX_VALUE = max(VALUE_AS_NUMBER)) %>%
   select(-c(VALUE_AS_NUMBER, MEASUREMENT_CONCEPT_ID)) %>% distinct()
 
-after365Data <- inner_join(sightData, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
+after365Data <- inner_join(sightData_after365, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
 
 check <- checkData(after365Data) 
 check_table[4,] = c(check["person"], check["row"])
@@ -107,7 +107,7 @@ sightData_after730 <- sightData %>%
   mutate(MAX_VALUE = max(VALUE_AS_NUMBER)) %>%
   select(-c(VALUE_AS_NUMBER, MEASUREMENT_CONCEPT_ID)) %>% distinct()
 
-after730Data <- inner_join(sightData, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
+after730Data <- inner_join(sightData_after730, drugData, by=c("PERSON_ID", "VA_CLASS")) %>% distinct()
 
 check <- checkData(after730Data) 
 check_table[5,] = c(check["person"], check["row"])
@@ -161,59 +161,37 @@ dt_long_drug <- dt_long %>%
       ifelse(SUBJECT_ID %in% afliPeople$PERSON_ID, "Aflibercept", "OTHER"))))
 
 
-dt_na_drug <- na.omit(dt_long_drug)
-mean_dt_drug <- dt_na_drug %>%
-  group_by(DAY, INI_DRUG) %>%
-  summarise(mean=mean(LOGMAR), sd =sd(LOGMAR))
+# dt_na_drug <- na.omit(dt_long_drug)
+# mean_dt_drug <- dt_na_drug %>%
+#   group_by(DAY, INI_DRUG) %>%
+#   summarise(mean=mean(LOGMAR), sd =sd(LOGMAR))
 
 
-write.csv(mean_dt_drug, "./mean_drug_va.csv")
+write.csv(dt_long_drug, "./dt_long_drug.csv")
 
 
 ## GEE
- v <- as.numeric(dt_long$DAY_NUM >0)
-fit <- gee(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long)
-sink("geefit.txt")
-summary(fit)
-sink()
+#  v <- as.numeric(dt_long$DAY_NUM >0)
+# fit <- gee(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long)
+# sink("geefit.txt")
+# summary(fit)
+# sink()
 
-geeInd <- geeglm(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long, family = gaussian)
-sink("geefit_ori.txt")
-summary(geeInd)
-sink()
+# geeInd <- geeglm(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long, family = gaussian)
+# sink("geefit_ori.txt")
+# summary(geeInd)
+# sink()
 
-geeAlon <- gee(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long, family = gaussian)
-sink("geefit_A.txt")
-summary(geeAlon)
-sink()
-
-
-extractOR(geeInd)
-options(ztable.type = "viewer")
-pdf("GEE.pdf")
-ztable(geeInd, digits = 4, caption = "Generalized Estimating Equation")
-graphics.off()
-dev.off()
+# geeAlon <- gee(LOGMAR ~ TIME, id = SUBJECT_ID, data = dt_long, family = gaussian)
+# sink("geefit_A.txt")
+# summary(geeAlon)
+# sink()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# extractOR(geeInd)
+# options(ztable.type = "viewer")
+# pdf("GEE.pdf")
+# ztable(geeInd, digits = 4, caption = "Generalized Estimating Equation")
+# graphics.off()
+# dev.off()
 
