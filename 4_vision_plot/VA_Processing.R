@@ -1,3 +1,5 @@
+source("./0_connection.R")
+source("./1_processingFunctions.R")
 
 # 아주대 
 rightIds <-c("2000000436", "2000000438")
@@ -140,15 +142,15 @@ dt_long <- dt_long %>% distinct()
 check <- checkData(dt_long) 
 check_table[6,] = c(check["person"], check["row"])
 
-write.csv(dt_long, "./dt_long.csv")
-write.csv(check_table, "./va_check.csv")
+# write.csv(dt_long, "./dt_long.csv")
+write.csv(check_table, "./1229_va_check.csv")
 
 dt_na <- na.omit(dt_long)
 mean_dt <- dt_na %>%
   group_by(DAY) %>%
   summarise(mean=mean(LOGMAR), sd=sd(LOGMAR))
 
-write.csv(mean_dt, "./mean_va.csv")
+write.csv(mean_dt, "./1229_mean_va.csv")
 
 ## Initial Drug
 bevaPeople <- drugData_ini %>% filter(DRUG_CLASS == "Bevacizumab")
@@ -167,7 +169,7 @@ dt_long_drug <- dt_long %>%
 #   summarise(mean=mean(LOGMAR), sd =sd(LOGMAR))
 
 
-write.csv(dt_long_drug, "./dt_long_drug.csv")
+write.csv(dt_long_drug, "./1229_dt_long_drug.csv")
 
 
 ## GEE
